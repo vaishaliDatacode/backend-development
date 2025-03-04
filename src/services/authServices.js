@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const signup = async (name, email, password, role) => {
     const existingUser = await User.findOne({ email });
 
+    //to check if email exists or not
     if (existingUser) {
       throw new Error('Email already exists');
     }
