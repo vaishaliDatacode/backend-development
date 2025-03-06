@@ -1,4 +1,4 @@
-const courseService = require('../services/courseService');
+import courseService from '../services/courseService';
 
 // Create a new course
 const createCourse = async (req, res) => {

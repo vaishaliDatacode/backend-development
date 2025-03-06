@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 
-const authMiddleware = require('../middlewares/authMiddleware');
-const courseController = require('../controllers/courseController');
+import authMiddleware from '../middlewares/authMiddleware';
+import courseController from '../controllers/courseController';
 
 const router = express.Router();
 
@@ -12,4 +12,4 @@ router.put('/:id', authMiddleware(['Admin', 'User']), courseController.updateCou
 router.delete('/:id', authMiddleware(['Admin', 'User']), courseController.deleteCourse);
 router.delete('/', authMiddleware(['Admin']), courseController.deleteAllCourses);
 
-module.exports = router;
+export default router;

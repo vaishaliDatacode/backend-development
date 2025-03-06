@@ -1,4 +1,4 @@
-const categoryService = require('../services/categoryService');
+import categoryService from '../services/categoryService';
 
 // Create a new category
 const createCategory = async (req, res) => {

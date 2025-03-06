@@ -1,10 +1,10 @@
-const express = require('express');
-const dotenv = require('dotenv');
+import express from 'express';
+import dotenv from 'dotenv';
 
-const connectDB = require('./config/db');
-const authRoutes = require('./routes/authRoutes');
-const courseRoutes = require('./routes/courseRoutes');
-const categoryRoutes = require('./routes/categoryRoutes');
+import connectDB from './config/db';
+import authRoutes from './routes/authRoutes';
+import courseRoutes from './routes/courseRoutes';
+import categoryRoutes from './routes/categoryRoutes';
 
 dotenv.config();
 
@@ -21,4 +21,4 @@ app.use('/api/category', categoryRoutes);
 // Connect to DB
 connectDB();
 
-module.exports = app;
+export default app;
