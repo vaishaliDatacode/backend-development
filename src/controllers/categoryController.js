@@ -53,7 +53,7 @@ const deleteCategory = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   createCategory,
   getAllCategories,
   getCategoryById,

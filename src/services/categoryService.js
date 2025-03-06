@@ -1,5 +1,5 @@
-const Category = require("../models/Category");
-const { validateCategory } = require("../utils/validators");
+import Category from '../models/Category';
+import validateCategory from '../utils/validators';
 
 // Create a new category
 const createCategory = async (name, description) => {
@@ -40,7 +40,7 @@ const deleteCategory = async (id) => {
   return category;
 };
 
-module.exports = {
+export default  {
   createCategory,
   getAllCategories,
   getCategoryById,

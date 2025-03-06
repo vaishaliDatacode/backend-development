@@ -65,7 +65,7 @@ const deleteAllCourses = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   createCourse,
   getAllCourses,
   getCourseById,

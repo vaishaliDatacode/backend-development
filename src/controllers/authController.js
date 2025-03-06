@@ -1,4 +1,4 @@
-const { signup, login } = require("../services/authServices");
+import { signup, login } from '../services/authServices';
 
 const signupUser = async (req, res) => {
   try {
