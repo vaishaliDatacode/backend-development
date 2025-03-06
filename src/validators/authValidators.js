@@ -44,11 +44,11 @@ export const validateLogin = [
     .withMessage('Password is required'),
 ];
 
-// Middleware to handle validation errors
 export const handleValidationErrors = (req, res, next) => {
-  const errors = validationResult(req);
+  console.log('i am here');
+  const errors = validationResult(req); 
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+    return res.status(400).json({ errors: errors.array() }); 
   }
-  next();
+  next(); 
 };

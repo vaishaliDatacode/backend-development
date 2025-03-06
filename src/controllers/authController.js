@@ -1,6 +1,7 @@
 import { signup, login } from '../services/authServices';
 
 const signupUser = async (req, res) => {
+  console.log('signup controller');
   try {
     const { name, email, password, role } = req.body;
 
