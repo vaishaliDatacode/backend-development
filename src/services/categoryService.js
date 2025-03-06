@@ -21,6 +21,7 @@ const getCategoryById = async (id) => {
 
 // Update a category by ID
 const updateCategory = async (id, name, description) => {
+  const { validateCategory } = require("../utils/validators");
 
   const category = await Category.findById(id);
   if (!category) throw new Error("Category not found");
