@@ -36,6 +36,7 @@ const updateCourse = async (
   tags,
   categoryId
 ) => {
+  validateCourse(title, description, difficulty, tags, categoryId);
   const course = await Course.findById(id);
   if (!course) throw new Error("Course not found");
 
