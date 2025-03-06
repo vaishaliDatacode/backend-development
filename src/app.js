@@ -2,9 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 
 import connectDB from './config/db';
-import authRoutes from './routes/authRoutes';
-import courseRoutes from './routes/courseRoutes';
-import categoryRoutes from './routes/categoryRoutes';
+import indexRoutes from './routes/indexRoutes';
+
 
 dotenv.config();
 
@@ -14,9 +13,8 @@ const app = express();
 app.use(express.json());
 
 // Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/courses', courseRoutes);
-app.use('/api/category', categoryRoutes);
+app.use('/api', indexRoutes);
+
 
 // Connect to DB
 connectDB();
