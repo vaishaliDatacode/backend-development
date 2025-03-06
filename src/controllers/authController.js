@@ -1,4 +1,4 @@
-const { signup, login } = require("../services/authServices");
+import { signup, login } from '../services/authServices';
 
 const signupUser = async (req, res) => {
   try {
@@ -28,4 +28,4 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { signupUser, loginUser };
+export default { signupUser, loginUser };

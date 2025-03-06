@@ -1,10 +1,11 @@
-const User = require('../models/User');
-const { generateToken } = require('../utils/jwtUtils');
-const bcrypt = require('bcryptjs');
+import User from '../models/User';
+import { generateToken } from '../utils/jwtUtils';
+import bcrypt from 'bcryptjs';
 
 const signup = async (name, email, password, role) => {
     const existingUser = await User.findOne({ email });
 
+    //to check if email exists or not
     if (existingUser) {
       throw new Error('Email already exists');
     }
@@ -28,7 +29,7 @@ const login = async (email, password) => {
     return { user, token };
   };
 
-module.exports = { signup, login };
+export default { signup, login };
 
 
 
