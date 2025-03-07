@@ -1,6 +1,6 @@
-import User from '../models/User';
-import { generateToken } from '../utils/jwtUtils';
-import bcrypt from 'bcryptjs';
+const User = require('../models/User');
+const { generateToken } = require('../utils/jwtUtils');
+const bcrypt = require('bcryptjs');
 
 const signup = async (name, email, password, role) => {
   try {
@@ -44,4 +44,4 @@ const login = async (email, password) => {
   }
 };
 
-export default { signup, login };
+module.exports = { signup, login };

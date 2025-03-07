@@ -1,4 +1,4 @@
-import categoryService from '../services/categoryService';
+const categoryService = require('../services/categoryService');
 
 // Create a new category
 const createCategory = async (req, res) => {
@@ -53,7 +53,7 @@ const deleteCategory = async (req, res) => {
   }
 };
 
-export default {
+module.exports =  {
   createCategory,
   getAllCategories,
   getCategoryById,

@@ -1,6 +1,6 @@
-import Course from '../models/Course';
-import Category from '../models/Category';
-import { validateCourse } from '../utils/validators';
+const Course = require('../models/Course');
+const Category = require('../models/Category');
+const { validateCourse } = require('../utils/validators');
 
 // Create a new course
 const createCourse = async (
@@ -77,7 +77,7 @@ const deleteAllCourses = async () => {
   };
 };
 
-export default  {
+module.exports =  {
   createCourse,
   updateCourse,
   deleteCourse,

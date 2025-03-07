@@ -1,4 +1,4 @@
-import { verifyToken } from '../utils/jwtUtils';
+const { verifyToken } = require('../utils/jwtUtils');
 
 const authMiddleware = (roles = []) => {
   return (req, res, next) => {
@@ -29,4 +29,4 @@ const authMiddleware = (roles = []) => {
   };
 };
 
-export default authMiddleware;
+module.exports = authMiddleware;

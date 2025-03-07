@@ -1,7 +1,8 @@
-import { body, validationResult } from 'express-validator';
+const { body, validationResult } = require('express-validator');
 
 // Validation rules for signup
-export const validateSignup = [
+const validateSignup = [
+  
   body('name')
     .trim()
     .notEmpty()
@@ -30,7 +31,7 @@ export const validateSignup = [
 ];
 
 // Validation rules for login
-export const validateLogin = [
+const validateLogin = [
   body('email')
     .trim()
     .notEmpty()
@@ -44,7 +45,7 @@ export const validateLogin = [
     .withMessage('Password is required'),
 ];
 
-export const handleValidationErrors = (req, res, next) => {
+const handleValidationErrors = (req, res, next) => {
   console.log('i am here');
   const errors = validationResult(req); 
   if (!errors.isEmpty()) {
@@ -52,3 +53,9 @@ export const handleValidationErrors = (req, res, next) => {
   }
   next(); 
 };
+
+module.exports = {
+  validateSignup,
+  validateLogin,
+  handleValidationErrors
+}

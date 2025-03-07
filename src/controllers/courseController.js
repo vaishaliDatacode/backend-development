@@ -1,4 +1,4 @@
-import courseService from '../services/courseService';
+const courseService = require('../services/courseService');
 
 // Create a new course
 const createCourse = async (req, res) => {
@@ -65,7 +65,7 @@ const deleteAllCourses = async (req, res) => {
   }
 };
 
-export default {
+module.exports = {
   createCourse,
   getAllCourses,
   getCourseById,

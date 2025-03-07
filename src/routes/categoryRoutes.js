@@ -1,7 +1,7 @@
-import express from 'express';
+const express = require('express');
 
-import authMiddleware from '../middlewares/authMiddleware';
-import categoryController from '../controllers/categoryController';
+const authMiddleware = require('../middlewares/authMiddleware');
+const categoryController = require('../controllers/categoryController');
 
 const router = express.Router();
 
@@ -12,4 +12,4 @@ router.put('/:id', authMiddleware(['Admin']), categoryController.updateCategory)
 router.delete('/:id', authMiddleware(['Admin']), categoryController.deleteCategory);
 
 
-export default router;
+module.exports = router;

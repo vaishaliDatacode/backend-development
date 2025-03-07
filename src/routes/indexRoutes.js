@@ -1,7 +1,7 @@
-import express from 'express';
-import authRoutes from './authRoutes';
-import courseRoutes from './courseRoutes';
-import categoryRoutes from './categoryRoutes';
+const express = require('express');
+const authRoutes = require('./authRoutes');
+const courseRoutes = require('./courseRoutes');
+const categoryRoutes = require('./categoryRoutes');
 
 const router = express.Router();
 
@@ -10,4 +10,4 @@ router.use('/auth', authRoutes);
 router.use('/courses', courseRoutes);
 router.use('/category', categoryRoutes);
 
-export default router;
+module.exports = router;

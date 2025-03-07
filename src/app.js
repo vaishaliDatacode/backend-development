@@ -1,8 +1,8 @@
-import express from 'express';
-import dotenv from 'dotenv';
+const express = require('express');
+const dotenv = require('dotenv');
 
-import connectDB from './config/db';
-import indexRoutes from './routes/indexRoutes';
+const connectDB = require('./config/db');
+const indexRoutes = require('./routes/indexRoutes');
 
 
 dotenv.config();
@@ -19,4 +19,4 @@ app.use('/api', indexRoutes);
 // Connect to DB
 connectDB();
 
-export default app;
+module.exports = app;

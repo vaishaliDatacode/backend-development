@@ -1,4 +1,4 @@
-import { isValidObjectId } from 'mongoose';
+const { isValidObjectId } = require('mongoose');
 
 // Validate category data
 const validateCategory = (name, description) => {
@@ -29,4 +29,4 @@ const validateCourse = (title, description, difficulty, tags, categoryId) => {
   }
 };
 
-export default { validateCategory, validateCourse };
+module.exports = { validateCategory, validateCourse };
