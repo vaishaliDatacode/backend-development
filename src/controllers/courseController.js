@@ -4,7 +4,7 @@ const courseService = require('../services/courseService');
 const createCourse = async (req, res) => {
   try {
     const { title, description, difficulty, tags, category } = req.body;
-    const createdBy = req.user.userId; 
+    const createdBy = req.user.userId; // Assuming user ID is available in the request
     const course = await courseService.createCourse(title, description, difficulty, tags, category, createdBy);
     res.status(201).json({ message: 'Course created successfully', course });
   } catch (error) {
@@ -36,8 +36,8 @@ const getCourseById = async (req, res) => {
 // Update a course by ID
 const updateCourse = async (req, res) => {
   try {
-    const { title, description, difficulty, tags, category } = req.body;
-    const course = await courseService.updateCourse(req.params.id, title, description, difficulty, tags, category);
+    const updates = req.body;
+    const course = await courseService.updateCourse(req.params.id, updates);
     res.status(200).json({ message: 'Course updated successfully', course });
   } catch (error) {
     res.status(400).json({ message: error.message });
