@@ -46,7 +46,6 @@ const validateLogin = [
 ];
 
 const handleValidationErrors = (req, res, next) => {
-  console.log('i am here');
   const errors = validationResult(req); 
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() }); 
