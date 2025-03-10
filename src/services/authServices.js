@@ -34,6 +34,7 @@ const login = async (email, password) => {
     if (!isPasswordValid) {
       throw new Error('Invalid password');
     }
+    user.password = undefined;
 
     const token = generateToken(user._id, user.role);
 
