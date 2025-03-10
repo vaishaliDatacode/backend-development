@@ -65,37 +65,37 @@ const getCourseById = async (id) => {
   }
 };
 
-// Delete a course by ID
-const deleteCourse = async (id) => {
+const deleteCourses = async (ids = [], userRole) => {
   try {
-    const course = await Course.findByIdAndDelete(id);
-    if (!course) throw new Error('Course not found');
-    return course;
+    let result;
+    if (ids.length === 0) {
+      // Only admins can delete all courses
+      if (userRole !== 'Admin') {
+        throw new Error('Unauthorized: Only admins can delete all courses');
+      }
+      result = await Course.deleteMany({});
+      return {
+        message: 'All courses deleted successfully',
+        deletedCount: result.deletedCount,
+      };
+    } else {
+      // Delete specific courses by IDs
+      result = await Course.deleteMany({ _id: { $in: ids } });
+      return {
+        message: 'Selected courses deleted successfully',
+        deletedCount: result.deletedCount,
+      };
+    }
   } catch (error) {
-    console.error('Error deleting course:', error.message);
-    throw new Error('Failed to delete course');
-  }
-};
-
-// Bulk delete all courses
-const deleteAllCourses = async () => {
-  try {
-    const result = await Course.deleteMany({});
-    return {
-      message: 'All courses deleted successfully',
-      deletedCount: result.deletedCount,
-    };
-  } catch (error) {
-    console.error('Error deleting all courses:', error.message);
-    throw new Error('Failed to delete all courses');
+    console.error('Error deleting courses:', error.message);
+    throw new Error('Failed to delete courses');
   }
 };
 
 module.exports = {
   createCourse,
   updateCourse,
-  deleteCourse,
   getCourseById,
   getAllCourses,
-  deleteAllCourses,
+  deleteCourses
 };

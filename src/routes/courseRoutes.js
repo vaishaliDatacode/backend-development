@@ -41,9 +41,7 @@ router.patch(
 );
 
 // Delete a course by ID
-router.delete('/:id', authMiddleware(['Admin', 'User']), deleteCourse);
+router.delete('/', authMiddleware(['Admin', 'User']), deleteCourse);
 
-// Bulk delete all courses (Admin only)
-router.delete('/', authMiddleware(['Admin']), deleteAllCourses);
 
 module.exports = router;

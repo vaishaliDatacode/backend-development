@@ -47,18 +47,9 @@ const updateCourse = async (req, res) => {
 // Delete a course by ID
 const deleteCourse = async (req, res) => {
   try {
-    const course = await courseService.deleteCourse(req.params.id);
-    res.status(200).json({ message: 'Course deleted successfully', course });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-// Bulk delete all courses (Admin only)
-const deleteAllCourses = async (req, res) => {
-  try {
-    if (req.user.role !== 'Admin') throw new Error('Only admins can perform this action');
-    const result = await courseService.deleteAllCourses();
+    const { ids } = req.body; 
+    const userRole = req.user.role; 
+    const result = await deleteCourses(ids, userRole);
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -71,5 +62,5 @@ module.exports = {
   getCourseById,
   updateCourse,
   deleteCourse,
-  deleteAllCourses,
+  
 };
