@@ -49,8 +49,22 @@ const deleteCourse = async (req, res) => {
   try {
     const { ids } = req.body; 
     const userRole = req.user.role; 
-    const result = await deleteCourses(ids, userRole);
+    const result = await courseService.deleteCourses(ids, userRole);
     res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+const searchCourse = async (req, res) => {
+  try{
+    const { q } = req.query;
+    if (!q) {
+      return res.status(400).json({ message: 'Search query is required' });
+    }
+    const courses = await courseService.searchCourses(q);
+    res.status(200).json({ courses });
+    
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -62,5 +76,6 @@ module.exports = {
   getCourseById,
   updateCourse,
   deleteCourse,
+  searchCourse
   
 };

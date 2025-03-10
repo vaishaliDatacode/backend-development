@@ -92,10 +92,20 @@ const deleteCourses = async (ids = [], userRole) => {
   }
 };
 
+const searchCourses = async (query) => {
+  try{
+    return await Course.find({ $text: { $search: query } });
+  }catch (error) {
+    console.error('Error search courses:', error.message);
+    throw new Error('Failed to search courses');
+  }
+};
+
 module.exports = {
   createCourse,
   updateCourse,
   getCourseById,
   getAllCourses,
-  deleteCourses
+  deleteCourses,
+  searchCourses
 };

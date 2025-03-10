@@ -6,7 +6,7 @@ const {
   getCourseById,
   updateCourse,
   deleteCourse,
-  deleteAllCourses,
+  searchCourse  
 } = require('../controllers/courseController'); 
 const {
   validateCreateCourse,
@@ -15,6 +15,8 @@ const {
 } = require('../validators/courseValidators');
 
 const router = express.Router();
+
+router.get('/search', authMiddleware(['Admin', 'User']),  searchCourse);
 
 // Create a new course
 router.post(
@@ -42,6 +44,7 @@ router.patch(
 
 // Delete a course by ID
 router.delete('/', authMiddleware(['Admin', 'User']), deleteCourse);
+
 
 
 module.exports = router;

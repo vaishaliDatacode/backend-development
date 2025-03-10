@@ -20,12 +20,13 @@ const courseSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now },
   },
   {
     timestamps: true,
   }
 );
+
+// Add text index for search
+courseSchema.index({ title: 'text', description: 'text' });
 
 module.exports = mongoose.model("Course", courseSchema);
