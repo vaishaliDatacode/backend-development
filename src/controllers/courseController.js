@@ -12,15 +12,44 @@ const createCourse = async (req, res) => {
   }
 };
 
-// Get all courses
 const getAllCourses = async (req, res) => {
   try {
-    const courses = await courseService.getAllCourses();
-    res.status(200).json({ courses });
+    const { category, difficulty, tags } = req.query;
+    
+    // Prepare filters object
+    const filters = {};
+    
+    if (category) {
+      filters.category = category;
+    }
+    
+    if (difficulty) {
+      // Validate difficulty is one of the allowed values
+      const allowedDifficulties = ['Beginner', 'Intermediate', 'Advanced'];
+      if (!allowedDifficulties.includes(difficulty)) {
+        return res.status(400).json({ 
+          message: 'Invalid difficulty level. Must be one of: Beginner, Intermediate, Advanced' 
+        });
+      }
+      filters.difficulty = difficulty;
+    }
+    
+    if (tags) {
+      // If tags is a string, convert to array
+      filters.tags = Array.isArray(tags) ? tags : [tags];
+    }
+    
+    const courses = await courseService.getAllCourses(filters);
+    res.status(200).json({ 
+      count: courses.length,
+      courses 
+    });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
+
+
 
 // Get a single course by ID
 const getCourseById = async (req, res) => {

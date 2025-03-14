@@ -43,15 +43,36 @@ const updateCourse = async (id, updates) => {
   }
 };
 
-// Get all courses
-const getAllCourses = async () => {
+// Get all courses with optional filtering
+const getAllCourses = async (filters = {}) => {
   try {
-    return await Course.find();
+    const query = {};
+    
+    // Filter by category
+    if (filters.category) {
+      query.category = filters.category;
+    }
+    
+    // Filter by difficulty
+    if (filters.difficulty) {
+      query.difficulty = filters.difficulty;
+    }
+    
+    // Filter by tags (if any tag matches)
+    if (filters.tags && filters.tags.length > 0) {
+      query.tags = { $in: filters.tags };
+    }
+    
+    // Execute the query with any applied filters
+    return await Course.find(query)
+      .populate('category', 'name')
+      .populate('createdBy', 'username email');
   } catch (error) {
     console.error('Error fetching courses:', error.message);
     throw new Error('Failed to fetch courses');
   }
 };
+
 
 // Get a specific course by ID
 const getCourseById = async (id) => {
