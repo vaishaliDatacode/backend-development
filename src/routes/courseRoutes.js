@@ -43,8 +43,7 @@ router.patch(
 );
 
 // Delete a course by ID
-router.delete('/', authMiddleware(['Admin', 'User']), deleteCourse);
-
+router.delete('/:id?', authMiddleware(['Admin', 'User']), deleteCourse);
 
 
 module.exports = router;
