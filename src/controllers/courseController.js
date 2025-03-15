@@ -148,7 +148,7 @@ const deleteCourse = async (req, res) => {
     if (req.params.id) {
       idsToDelete = [req.params.id]; 
     } 
-    else if (req.body.ids) {
+    else if (req.body && req.body.ids) {
       idsToDelete = Array.isArray(req.body.ids) ? req.body.ids : [req.body.ids];
     }
     
