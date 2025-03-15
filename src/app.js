@@ -3,6 +3,8 @@ const dotenv = require('dotenv');
 
 const connectDB = require('./config/db');
 const indexRoutes = require('./routes');
+const { setupDevEmailAccount } = require('./utils/emailUtils');
+
 
 
 dotenv.config();
@@ -15,6 +17,7 @@ app.use(express.json());
 // Routes
 app.use('/api', indexRoutes);
 
+setupDevEmailAccount();
 
 // Connect to DB
 connectDB();
